@@ -1,6 +1,6 @@
 import express from 'express';
 import { getAllProducts, createProduct } from '../controllers/product';
-import { validateProductBody } from '../middlewares/validations'
+import { validateProductBody } from '../middlewares/validations';
 
 const router = express.Router();
 

@@ -1,12 +1,16 @@
 import { CelebrateError } from 'celebrate';
 import { Request, Response, NextFunction } from 'express';
-import NotFoundError from '../errors/not-found-error';
 import BadRequestError from '../errors/bad-request-error';
+import NotFoundError from '../errors/not-found-error';
 import ConflictError from '../errors/conflict-error';
 
 const resolveError = (err: Error) => {
-  if (err instanceof BadRequestError || err instanceof NotFoundError || err instanceof ConflictError) {
-    return { status: (err as any).statusCode, message: err.message };
+  if (
+    err instanceof BadRequestError
+    || err instanceof NotFoundError
+    || err instanceof ConflictError
+  ) {
+    return { status: err.statusCode, message: err.message };
   }
   if (err instanceof CelebrateError) {
     return { status: 400, message: 'Ошибка валидации данных' };

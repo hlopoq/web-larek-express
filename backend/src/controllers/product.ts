@@ -4,7 +4,7 @@ import Product from '../models/product';
 export const getAllProducts = async (
   _req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const products = await Product.find();
@@ -17,13 +17,14 @@ export const getAllProducts = async (
   }
 };
 
-
 export const createProduct = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
-  const { title, image, category, description, price } = req.body;
+  const {
+    title, image, category, description, price,
+  } = req.body;
   try {
     const createdProduct = await Product.create({
       title,

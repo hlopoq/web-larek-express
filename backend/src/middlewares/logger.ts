@@ -1,8 +1,7 @@
 import winston from 'winston';
 import expressWinston from 'express-winston';
 
-const createFileTransport = (filename: string) =>
-  new winston.transports.File({ filename });
+const createFileTransport = (filename: string) => new winston.transports.File({ filename });
 
 const requestLogger = expressWinston.logger({
   transports: [createFileTransport('request.log')],

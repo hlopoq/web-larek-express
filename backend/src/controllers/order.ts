@@ -9,13 +9,12 @@ const checkAllItemsExist = (products: unknown[], items: string[]) => {
   }
 };
 
-const computeTotal = (products: any[]) =>
-  products.reduce((sum, product) => {
-    if (!product.price) {
-      throw new BadRequestError('Товар не продается');
-    }
-    return sum + product.price;
-  }, 0);
+const computeTotal = (products: any[]) => products.reduce((sum, product) => {
+  if (!product.price) {
+    throw new BadRequestError('Товар не продается');
+  }
+  return sum + product.price;
+}, 0);
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   const { total, items } = req.body;
@@ -27,8 +26,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     if (totalPrice !== total) {
       return next(
         new BadRequestError(
-          'Общая сумма заказа не совпадает со стоимостью товаров'
-        )
+          'Общая сумма заказа не совпадает со стоимостью товаров',
+        ),
       );
     }
 
